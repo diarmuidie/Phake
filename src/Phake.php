@@ -567,8 +567,8 @@ class Phake
     public static function getClient()
     {
         if (!isset(self::$client)) {
-            if (class_exists('PHPUnit_Framework_TestCase')) {
-                return self::$client = new Phake_Client_PHPUnit();
+            if (class_exists('PHPUnit_Framework_TestCase') || class_exists('PHPUnit\Framework\TestCase')) {
+                return self::$client = self::getPhpUnitClient();
             }
             return self::$client = new Phake_Client_Default();
         } else {
@@ -587,11 +587,24 @@ class Phake
     {
         if ($client instanceof Phake_Client_IClient) {
             self::$client = $client;
-        } elseif ($client == self::CLIENT_PHPUNIT) {
-            self::$client = new Phake_Client_PHPUnit();
+        }  elseif ($client == self::CLIENT_PHPUNIT) {
+            self::$client = self::getPhpUnitClient();
         } else {
             self::$client = new Phake_Client_Default();
         }
+    }
+
+    /**
+     * Get the an instance of the PHPUnit Client depending on the installed version.
+     *
+     * @return Phake_Client_PHPUnit|Phake_Client_PHPUnitV6
+     */
+    private static function getPhpUnitClient()
+    {
+        if (class_exists('PHPUnit_Framework_TestCase')) {
+            return new Phake_Client_PHPUnit();
+        }
+        return new Phake_Client_PHPUnitV6();
     }
 
     public static function getMockLoader()
