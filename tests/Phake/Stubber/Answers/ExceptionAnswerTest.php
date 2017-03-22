@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @author Brian Feaver <brian.feaver@gmail.com>
  */
-class Phake_Stubber_Answers_ExceptionAnswerTest extends PHPUnit_Framework_TestCase
+class Phake_Stubber_Answers_ExceptionAnswerTest extends TestCase
 {
     /**
      * @var Phake_Stubber_Answers_ExceptionAnswer

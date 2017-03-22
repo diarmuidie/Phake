@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the functionality of the AtMost class.
  */
-class Phake_CallRecorder_VerifierMode_AtMostTest extends PHPUnit_Framework_TestCase
+class Phake_CallRecorder_VerifierMode_AtMostTest extends TestCase
 {
     private $verifier;
 

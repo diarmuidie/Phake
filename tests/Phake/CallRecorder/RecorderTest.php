@@ -42,18 +42,20 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test the Phake Call Recorder
  *
  * @author Mike Lively <m@digitalsandwich.com>
  */
-class Phake_CallRecorder_RecorderTest extends PHPUnit_Framework_TestCase
+class Phake_CallRecorder_RecorderTest extends TestCase
 {
     private $mock;
 
     public function setUp()
     {
-        $this->mock = $this->getMock('Phake_IMock');
+        $this->mock = $this->createMock('Phake_IMock');
     }
 
     /**

@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the call order verifier
  */
-class Phake_CallRecorder_OrderVerifierTest extends PHPUnit_Framework_TestCase
+class Phake_CallRecorder_OrderVerifierTest extends TestCase
 {
     /**
      * @var Phake_CallRecorder_OrderVerifier

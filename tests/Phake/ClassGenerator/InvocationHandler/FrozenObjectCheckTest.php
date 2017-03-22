@@ -43,7 +43,10 @@
  * @link       http://www.digitalsandwich.com/
  */
 
-class Phake_ClassGenerator_InvocationHandler_FrozenObjectCheckTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\ExpectationFailedException;
+
+class Phake_ClassGenerator_InvocationHandler_FrozenObjectCheckTest extends TestCase
 {
     /**
      * @var Phake_ClassGenerator_InvocationHandler_FrozenObjectCheck
@@ -74,7 +77,7 @@ class Phake_ClassGenerator_InvocationHandler_FrozenObjectCheckTest extends PHPUn
 
     public function testReturnsWithNoIssuesIfObjectIsNotFrozen()
     {
-        $mock = $this->getMock('Phake_IMock');
+        $mock = $this->createMock('Phake_IMock');
         Phake::when($this->mockInfo)->isObjectFrozen()->thenReturn(false);
 
         try {
@@ -87,10 +90,12 @@ class Phake_ClassGenerator_InvocationHandler_FrozenObjectCheckTest extends PHPUn
 
     public function testThrowsWhenObjectIsFrozen()
     {
-        $mock = $this->getMock('Phake_IMock');
+        $mock = $this->createMock('Phake_IMock');
         Phake::when($this->mockInfo)->isObjectFrozen()->thenReturn(true);
 
-        $this->setExpectedException('Phake_Exception_VerificationException', 'This object has been frozen.');
+        $this->expectException('Phake_Exception_VerificationException');
+        $this->expectExceptionMessage('This object has been frozen.');
+
         $ref = array();
         $this->handler->invoke($mock, 'foo', array(), $ref);
     }
@@ -99,10 +104,12 @@ class Phake_ClassGenerator_InvocationHandler_FrozenObjectCheckTest extends PHPUn
     {
         Phake::setClient(Phake::CLIENT_PHPUNIT);
 
-        $mock = $this->getMock('Phake_IMock');
+        $mock = $this->createMock('Phake_IMock');
         Phake::when($this->mockInfo)->isObjectFrozen()->thenReturn(true);
 
-        $this->setExpectedException('PHPUnit_Framework_ExpectationFailedException', 'This object has been frozen.');
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage('This object has been frozen.');
+
         $ref = array();
         $this->handler->invoke($mock, 'foo', array(), $ref);
     }

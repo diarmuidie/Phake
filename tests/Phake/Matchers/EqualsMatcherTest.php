@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the functionality of the equals matcher
  */
-class Phake_Matchers_EqualsMatcherTest extends PHPUnit_Framework_TestCase
+class Phake_Matchers_EqualsMatcherTest extends TestCase
 {
     /**
      * @var Phake_Matchers_EqualsMatcher
@@ -75,7 +77,7 @@ class Phake_Matchers_EqualsMatcherTest extends PHPUnit_Framework_TestCase
     public function testBadMatches()
     {
         $value = array('test');
-        $this->setExpectedException('Exception');
+        $this->expectException('Exception');
         $this->matcher->doArgumentsMatch($value);
     }
 
@@ -120,7 +122,7 @@ class Phake_Matchers_EqualsMatcherTest extends PHPUnit_Framework_TestCase
         $this->matcher = new Phake_Matchers_EqualsMatcher(new PhakeTest_A(), new \SebastianBergmann\Comparator\Factory());
 
         $value = array(new PhakeTest_B());
-        $this->setExpectedException('Exception');
+        $this->expectException('Exception');
         $this->matcher->doArgumentsMatch($value);
     }
 
@@ -129,7 +131,7 @@ class Phake_Matchers_EqualsMatcherTest extends PHPUnit_Framework_TestCase
         $this->matcher = new Phake_Matchers_EqualsMatcher(array(1), new \SebastianBergmann\Comparator\Factory());
 
         $test = array(array(1, 2));
-        $this->setExpectedException('Phake_Exception_MethodMatcherException');
+        $this->expectException('Phake_Exception_MethodMatcherException');
         $this->matcher->doArgumentsMatch($test);
     }
 
@@ -138,7 +140,7 @@ class Phake_Matchers_EqualsMatcherTest extends PHPUnit_Framework_TestCase
         $this->matcher = new Phake_Matchers_EqualsMatcher(array('one' => 1), new \SebastianBergmann\Comparator\Factory());
 
         $test = array(array('two' => 1));
-        $this->setExpectedException('Exception');
+        $this->expectException('Exception');
         $this->matcher->doArgumentsMatch($test);
     }
 }

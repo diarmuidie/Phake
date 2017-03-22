@@ -42,10 +42,13 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Constraint\Constraint;
+
 /**
  * Tests the adapting of phpunit constraints into Phake matchers
  */
-class Phake_Matchers_PHPUnitConstraintAdapterTest extends PHPUnit_Framework_TestCase
+class Phake_Matchers_PHPUnitConstraintAdapterTest extends TestCase
 {
     /**
      * @var Phake_Matchers_PHPUnitConstraintAdapter
@@ -53,7 +56,7 @@ class Phake_Matchers_PHPUnitConstraintAdapterTest extends PHPUnit_Framework_Test
     private $adapter;
 
     /**
-     * @var PHPUnit_Framework_Constraint
+     * @var Constraint
      */
     private $constraint;
 
@@ -62,7 +65,7 @@ class Phake_Matchers_PHPUnitConstraintAdapterTest extends PHPUnit_Framework_Test
      */
     public function setUp()
     {
-        $this->constraint = $this->getMock('PHPUnit_Framework_Constraint');
+        $this->constraint = $this->createMock(Constraint::class);
         $this->adapter    = new Phake_Matchers_PHPUnitConstraintAdapter($this->constraint);
         $this->constraint->expects($this->any())
             ->method('toString')

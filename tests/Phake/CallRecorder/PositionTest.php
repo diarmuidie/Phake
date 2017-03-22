@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the call recorder position class.
  */
-class Phake_CallRecorder_PositionTest extends PHPUnit_Framework_TestCase
+class Phake_CallRecorder_PositionTest extends TestCase
 {
     /**
      * @var Phake_CallRecorder_Position
@@ -86,7 +88,7 @@ class Phake_CallRecorder_PositionTest extends PHPUnit_Framework_TestCase
      */
     private function getCall()
     {
-        return $this->getMock('Phake_CallRecorder_Call', array(), array(), '', false);
+        return $this->createMock('Phake_CallRecorder_Call');
     }
 }
 

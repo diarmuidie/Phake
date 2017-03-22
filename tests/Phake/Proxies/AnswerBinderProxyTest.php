@@ -42,12 +42,14 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Description of AnswerBinderProxyTest
  *
  * @author Mike Lively <m@digitalsandwich.com>
  */
-class Phake_Proxies_AnswerBinderProxyTest extends PHPUnit_Framework_TestCase
+class Phake_Proxies_AnswerBinderProxyTest extends TestCase
 {
     /**
      * @var Phake_Proxies_AnswerBinderProxy
@@ -64,7 +66,7 @@ class Phake_Proxies_AnswerBinderProxyTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->binder = $this->getMock('Phake_Stubber_AnswerBinder', array(), array(), '', false);
+        $this->binder = $this->createMock('Phake_Stubber_AnswerBinder', array(), array(), '', false);
         $this->proxy  = new Phake_Proxies_AnswerBinderProxy($this->binder);
     }
 
@@ -117,7 +119,7 @@ class Phake_Proxies_AnswerBinderProxyTest extends PHPUnit_Framework_TestCase
      */
     public function testThenReturnCallbackThrowsExceptionForUncallableLambda()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectException('InvalidArgumentException');
 
         $func = 'some_unknown_function';
         $this->proxy->thenReturnCallback($func);

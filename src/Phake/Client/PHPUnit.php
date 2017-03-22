@@ -56,7 +56,7 @@ class Phake_Client_PHPUnit implements Phake_Client_IClient
 {
     public function processVerifierResult(Phake_CallRecorder_VerifierResult $result)
     {
-        Assert::assertThat($result, $this->getConstraint());
+        Assert::assertThat($result, $this->getConstraint(), $result->getFailureDescription());
 
         return $result->getMatchedCalls();
     }

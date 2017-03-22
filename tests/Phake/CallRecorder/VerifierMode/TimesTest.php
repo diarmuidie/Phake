@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the functionality of the Times class.
  */
-class Phake_CallRecorder_VerifierMode_TimesTest extends PHPUnit_Framework_TestCase
+class Phake_CallRecorder_VerifierMode_TimesTest extends TestCase
 {
     private $verifierModeTimes;
 

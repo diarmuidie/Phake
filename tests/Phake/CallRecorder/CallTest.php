@@ -42,12 +42,14 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the Call Recorder Call value object
  *
  * @author Mike Lively <m@digitalsandwich.com>
  */
-class Phake_CallRecorder_CallTest extends PHPUnit_Framework_TestCase
+class Phake_CallRecorder_CallTest extends TestCase
 {
     /**
      * @var Phake_CallRecorder_Call

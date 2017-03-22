@@ -42,7 +42,9 @@
  * @link       http://www.digitalsandwich.com/
  */
 
-class Phake_Matchers_MethodMatcherTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Phake_Matchers_MethodMatcherTest extends TestCase
 {
     /**
      * @var Phake_Matchers_MethodMatcher

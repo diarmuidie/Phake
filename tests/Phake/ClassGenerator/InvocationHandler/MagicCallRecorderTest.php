@@ -43,7 +43,9 @@
  * @link       http://www.digitalsandwich.com/
  */
 
-class Phake_ClassGenerator_InvocationHandler_MagicCallRecorderTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Phake_ClassGenerator_InvocationHandler_MagicCallRecorderTest extends TestCase
 {
     /**
      * @var Phake_ClassGenerator_InvocationHandler_MagicCallRecorder
@@ -68,7 +70,7 @@ class Phake_ClassGenerator_InvocationHandler_MagicCallRecorderTest extends PHPUn
 
     public function testMagicCallIsRecorded()
     {
-        $mock = $this->getMock('Phake_IMock');
+        $mock = $this->createMock('Phake_IMock');
 
         $ref = array('foo', array());
         $this->handler->invoke($mock, '__call', array('foo', array()), $ref);
@@ -80,7 +82,7 @@ class Phake_ClassGenerator_InvocationHandler_MagicCallRecorderTest extends PHPUn
 
     public function testStaticMagicCallIsRecorded()
     {
-        $mock = $this->getMock('Phake_IMock');
+        $mock = $this->createMock('Phake_IMock');
         $mockClass = get_class($mock);
 
         $ref = array('foo', array());
@@ -93,7 +95,7 @@ class Phake_ClassGenerator_InvocationHandler_MagicCallRecorderTest extends PHPUn
 
     public function testNonMagicCallDoesNothing()
     {
-        $mock = $this->getMock('Phake_IMock');
+        $mock = $this->createMock('Phake_IMock');
 
         $ref = array();
         $this->handler->invoke($mock, 'foo', array(), $ref);

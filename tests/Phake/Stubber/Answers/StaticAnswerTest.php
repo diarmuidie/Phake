@@ -42,12 +42,14 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Description of StaticAnswerTest
  *
  * @author Mike Lively <m@digitalsandwich.com>
  */
-class Phake_Stubber_Answers_StaticAnswerTest extends PHPUnit_Framework_TestCase
+class Phake_Stubber_Answers_StaticAnswerTest extends TestCase
 {
     /**
      * @var Phake_Stubber_Answers_StaticAnswer

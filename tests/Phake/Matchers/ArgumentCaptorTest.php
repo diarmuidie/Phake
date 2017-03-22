@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the argument captor functionality.
  */
-class Phake_Matchers_ArgumentCaptorTest extends PHPUnit_Framework_TestCase
+class Phake_Matchers_ArgumentCaptorTest extends TestCase
 {
     /**
      * @var Phake_Matchers_ArgumentCaptor

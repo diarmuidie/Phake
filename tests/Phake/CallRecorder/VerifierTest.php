@@ -42,12 +42,14 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Description of VerifierTest
  *
  * @author Mike Lively <m@digitalsandwich.com>
  */
-class Phake_CallRecorder_VerifierTest extends PHPUnit_Framework_TestCase
+class Phake_CallRecorder_VerifierTest extends TestCase
 {
     /**
      * @var Phake_CallRecorder_Recorder
@@ -224,8 +226,8 @@ class Phake_CallRecorder_VerifierTest extends PHPUnit_Framework_TestCase
     public function testVerifierBeingCalledWithMixedCallRecorder()
     {
         $recorder = new Phake_CallRecorder_Recorder();
-        $obj1     = $this->getMock('Phake_IMock');
-        $obj2     = $this->getMock('Phake_IMock');
+        $obj1     = $this->createMock('Phake_IMock');
+        $obj2     = $this->createMock('Phake_IMock');
 
         $expectation = new Phake_CallRecorder_CallExpectation(
             $obj1,

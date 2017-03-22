@@ -42,8 +42,9 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
 
-class Phake_Proxies_AnswerCollectionProxyTest extends PHPUnit_Framework_TestCase
+class Phake_Proxies_AnswerCollectionProxyTest extends TestCase
 {
     /**
      * @var Phake_Proxies_AnswerCollectionProxyTest
@@ -107,7 +108,7 @@ class Phake_Proxies_AnswerCollectionProxyTest extends PHPUnit_Framework_TestCase
      */
     public function testThenGetReturnByLambdaThrowsExceptionForUncallableLambda()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectException('InvalidArgumentException');
 
         $func = 'some_unknown_function';
         $this->proxy->thenGetReturnByLambda($func);

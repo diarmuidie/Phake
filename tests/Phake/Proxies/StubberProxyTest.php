@@ -42,12 +42,14 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Description of StubberProxyTest
  *
  * @author Mike Lively <m@digitalsandwich.com>
  */
-class Phake_Proxies_StubberProxyTest extends PHPUnit_Framework_TestCase
+class Phake_Proxies_StubberProxyTest extends TestCase
 {
     /**
      * @var Phake_Proxies_StubberProxy
@@ -131,7 +133,8 @@ class Phake_Proxies_StubberProxyTest extends PHPUnit_Framework_TestCase
      */
     public function testMagicGetWithInvalidData($invalidData, $exceptionContains)
     {
-        $this->setExpectedException('InvalidArgumentException', $exceptionContains);
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage($exceptionContains);
         $this->proxy->__get($invalidData);
     }
 

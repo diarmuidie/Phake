@@ -43,7 +43,11 @@
  * @link       http://www.digitalsandwich.com/
  */
 
-class Phake_Client_PHPUnitTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\ExpectationFailedException;
+
+class Phake_Client_PHPUnitTest extends TestCase
 {
     private $client;
 
@@ -68,7 +72,8 @@ class Phake_Client_PHPUnitTest extends PHPUnit_Framework_TestCase
     {
         $result = new Phake_CallRecorder_VerifierResult(false, array(), 'failure message');
 
-        $this->setExpectedException('PHPUnit_Framework_ExpectationFailedException', 'failure message');
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage('failure message');
         $this->client->processVerifierResult($result);
     }
 
@@ -76,9 +81,9 @@ class Phake_Client_PHPUnitTest extends PHPUnit_Framework_TestCase
     {
         $result = new Phake_CallRecorder_VerifierResult(true, array('call1'));
 
-        $assertionCount = PHPUnit_Framework_Assert::getCount();
+        $assertionCount = Assert::getCount();
         $this->client->processVerifierResult($result);
-        $newAssertionCount = PHPUnit_Framework_Assert::getCount();
+        $newAssertionCount = Assert::getCount();
 
         $this->assertGreaterThan($assertionCount, $newAssertionCount);
     }
@@ -88,9 +93,9 @@ class Phake_Client_PHPUnitTest extends PHPUnit_Framework_TestCase
      */
     public function testProcessObjectFreeze()
     {
-        $assertionCount = PHPUnit_Framework_Assert::getCount();
+        $assertionCount = Assert::getCount();
         $this->client->processObjectFreeze();
-        $newAssertionCount = PHPUnit_Framework_Assert::getCount();
+        $newAssertionCount = Assert::getCount();
 
         $this->assertGreaterThan($assertionCount, $newAssertionCount);
     }

@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the functionality of the call info class
  */
-class Phake_CallRecorder_CallInfoTest extends PHPUnit_Framework_TestCase
+class Phake_CallRecorder_CallInfoTest extends TestCase
 {
     /**
      * @var Phake_CallRecorder_CallInfo
@@ -68,8 +70,8 @@ class Phake_CallRecorder_CallInfoTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->call     = $this->getMock('Phake_CallRecorder_Call', array(), array(), '', false);
-        $this->position = $this->getMock('Phake_CallRecorder_Position', array(), array(), '', false);
+        $this->call     = $this->createMock('Phake_CallRecorder_Call');
+        $this->position = $this->createMock('Phake_CallRecorder_Position');
 
         $this->callInfo = new Phake_CallRecorder_CallInfo($this->call, $this->position);
     }

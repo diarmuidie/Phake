@@ -43,7 +43,9 @@
  * @link       http://www.digitalsandwich.com/
  */
 
-class Phake_ClassGenerator_InvocationHandler_StubCallerTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Phake_ClassGenerator_InvocationHandler_StubCallerTest extends TestCase
 {
     /**
      * @var Phake_ClassGenerator_InvocationHandler_StubCaller
@@ -73,7 +75,7 @@ class Phake_ClassGenerator_InvocationHandler_StubCallerTest extends PHPUnit_Fram
     public function setUp()
     {
         Phake::initAnnotations($this);
-        $this->mock          = $this->getMock('Phake_IMock');
+        $this->mock          = $this->createMock('Phake_IMock');
         $this->stubMapper    = Phake::mock('Phake_Stubber_StubMapper');
         $this->defaultAnswer = Phake::mock('Phake_Stubber_IAnswer');
         Phake::when($this->defaultAnswer)->getAnswerCallback('foo')->thenReturn(function () { return '24'; });

@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the self binding answer binder
  */
-class Phake_Stubber_SelfBindingAnswerBinderTest extends PHPUnit_Framework_TestCase
+class Phake_Stubber_SelfBindingAnswerBinderTest extends TestCase
 {
     /**
      * @var Phake_Stubber_SelfBindingAnswerBinder
@@ -65,7 +67,7 @@ class Phake_Stubber_SelfBindingAnswerBinderTest extends PHPUnit_Framework_TestCa
      */
     public function testGetAnswer()
     {
-        $answer = $this->getMock('Phake_Stubber_IAnswer');
+        $answer = $this->createMock('Phake_Stubber_IAnswer');
         $this->assertSame($this->binder, $this->binder->bindAnswer($answer));
 
         $this->assertSame($answer, $this->binder->getAnswer());

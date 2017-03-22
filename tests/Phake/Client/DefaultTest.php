@@ -43,7 +43,9 @@
  * @link       http://www.digitalsandwich.com/
  */
 
-class Phake_Client_DefaultTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Phake_Client_DefaultTest extends TestCase
 {
     private $client;
 
@@ -68,7 +70,8 @@ class Phake_Client_DefaultTest extends PHPUnit_Framework_TestCase
     {
         $result = new Phake_CallRecorder_VerifierResult(false, array(), 'failure message');
 
-        $this->setExpectedException('Phake_Exception_VerificationException', 'failure message');
+        $this->expectException('Phake_Exception_VerificationException');
+        $this->expectExceptionMessage('failure message');
         $this->client->processVerifierResult($result);
     }
 }

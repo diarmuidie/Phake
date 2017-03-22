@@ -42,7 +42,10 @@
  * @link       http://www.digitalsandwich.com/
  */
 
-class Phake_Matchers_FactoryTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Constraint\Constraint;
+
+class Phake_Matchers_FactoryTest extends TestCase
 {
     /**
      * @var Phake_Matchers_Factory
@@ -75,7 +78,7 @@ class Phake_Matchers_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testPassThroughMatcher()
     {
-        $matcher = $this->getMock('Phake_Matchers_IChainableArgumentMatcher');
+        $matcher = $this->createMock('Phake_Matchers_IChainableArgumentMatcher');
 
         $retMatcher = $this->factory->createMatcher($matcher);
 
@@ -87,7 +90,7 @@ class Phake_Matchers_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testPHPUnitConstraint()
     {
-        $matcher = $this->getMock('PHPUnit_Framework_Constraint');
+        $matcher = $this->createMock(Constraint::class);
         $matcher->expects($this->once())
             ->method('evaluate')
             ->with($this->equalTo('foo'))
@@ -104,7 +107,7 @@ class Phake_Matchers_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testHamcrestMatcher()
     {
-        $matcher = $this->getMock('Hamcrest\Matcher');
+        $matcher = $this->createMock('Hamcrest\Matcher');
         $matcher->expects($this->once())
             ->method('matches')
             ->with($this->equalTo('foo'))

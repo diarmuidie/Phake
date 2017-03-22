@@ -42,12 +42,14 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the Answer Factory
  *
  * @author Mike Lively <m@digitalsandwich.com>
  */
-class Phake_Stubber_AnswerBinderTest extends PHPUnit_Framework_TestCase
+class Phake_Stubber_AnswerBinderTest extends TestCase
 {
     /**
      * @var Phake_Stubber_AnswerBinder
@@ -70,7 +72,7 @@ class Phake_Stubber_AnswerBinderTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         Phake::initAnnotations($this);
-        $this->matcher    = $this->getMock('Phake_Matchers_MethodMatcher', array(), array(), '', false);
+        $this->matcher    = $this->createMock('Phake_Matchers_MethodMatcher', array(), array(), '', false);
         $this->stubMapper = Phake::mock('Phake_Stubber_StubMapper');
 
         $this->binder = new Phake_Stubber_AnswerBinder($this->matcher, $this->stubMapper);
@@ -78,7 +80,7 @@ class Phake_Stubber_AnswerBinderTest extends PHPUnit_Framework_TestCase
 
     public function testBindAnswer()
     {
-        $answer = $this->getMock('Phake_Stubber_IAnswer');
+        $answer = $this->createMock('Phake_Stubber_IAnswer');
 
         $this->binder->bindAnswer($answer);
 
@@ -87,7 +89,7 @@ class Phake_Stubber_AnswerBinderTest extends PHPUnit_Framework_TestCase
 
     public function testBindAnswerReturnsAnswerCollectionBinder()
     {
-        $answer = $this->getMock('Phake_Stubber_IAnswer');
+        $answer = $this->createMock('Phake_Stubber_IAnswer');
 
         $newBinder = $this->binder->bindAnswer($answer);
 

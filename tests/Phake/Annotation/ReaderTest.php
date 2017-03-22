@@ -43,11 +43,13 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @ann1 Test Annotation
  * @ann2
  */
-class Phake_Annotation_ReaderTest extends PHPUnit_Framework_TestCase
+class Phake_Annotation_ReaderTest extends TestCase
 {
     /**
      * @ann3 Test Annotation

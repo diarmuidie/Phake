@@ -43,7 +43,9 @@
  * @link       http://www.digitalsandwich.com/
  */
 
-class Phake_ClassGenerator_InvocationHandler_CallRecorderTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Phake_ClassGenerator_InvocationHandler_CallRecorderTest extends TestCase
 {
     /**
      * @var Phake_ClassGenerator_InvocationHandler_CallRecorder
@@ -69,7 +71,7 @@ class Phake_ClassGenerator_InvocationHandler_CallRecorderTest extends PHPUnit_Fr
 
     public function testCallIsRecorded()
     {
-        $mock = $this->getMock('Phake_IMock');
+        $mock = $this->createMock('Phake_IMock');
 
         $ref = array();
         $this->handler->invoke($mock, 'foo', array(), $ref);
@@ -79,7 +81,7 @@ class Phake_ClassGenerator_InvocationHandler_CallRecorderTest extends PHPUnit_Fr
 
     public function testStaticCallIsRecorded()
     {
-        $mock = $this->getMock('Phake_IMock');
+        $mock = $this->createMock('Phake_IMock');
         $mockClass = get_class($mock);
 
         $ref = array();

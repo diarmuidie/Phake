@@ -42,10 +42,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the reference setter functionality.
  */
-class Phake_Matchers_ReferenceSetterTest extends PHPUnit_Framework_TestCase
+class Phake_Matchers_ReferenceSetterTest extends TestCase
 {
     /**
      * @var Phake_Matchers_ReferenceSetter
@@ -103,7 +105,7 @@ class Phake_Matchers_ReferenceSetterTest extends PHPUnit_Framework_TestCase
         $this->setter->when($matcher);
 
         $value = array('blah');
-        $this->setExpectedException('Exception');
+        $this->expectException('Exception');
         $this->setter->doArgumentsMatch($value);
 
         $this->assertEquals('blah', $value[0]);

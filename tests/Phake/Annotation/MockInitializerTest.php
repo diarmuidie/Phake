@@ -44,12 +44,13 @@
  */
 
 use PhakeTest\AnotherNamespacedClass;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @ann1 Test Annotation
  * @ann2
  */
-class Phake_Annotation_MockInitializerTest extends PHPUnit_Framework_TestCase
+class Phake_Annotation_MockInitializerTest extends TestCase
 {
     /**
      * @var Phake_Annotation_MockInitializer

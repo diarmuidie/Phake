@@ -55,7 +55,17 @@ class Phake_PHPUnit_VerifierResultConstraint extends Constraint
         if (!$other instanceof Phake_CallRecorder_VerifierResult) {
             throw new InvalidArgumentException("You must pass an instance of Phake_CallRecorder_VerifierResult");
         }
-        return $other->getVerified();
+        $success = $other->getVerified();
+
+        if ($returnResult) {
+            return $success;
+        }
+
+        if (!$success) {
+            $this->fail($other, $description);
+        }
+
+        return $success;
     }
 
     public function toString()
@@ -63,12 +73,11 @@ class Phake_PHPUnit_VerifierResultConstraint extends Constraint
         return 'is called';
     }
 
-    protected function customFailureDescription($other, $description, $not)
+    protected function failureDescription($other)
     {
         if (!$other instanceof Phake_CallRecorder_VerifierResult) {
             throw new InvalidArgumentException("You must pass an instance of Phake_CallRecorder_VerifierResult");
         }
-
         return $other->getFailureDescription();
     }
 }

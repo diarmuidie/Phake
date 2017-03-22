@@ -42,12 +42,14 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Description of VerifierProxyTest
  *
  * @author Mike Lively <m@digitalsandwich.com>
  */
-class Phake_Proxies_VerifierProxyTest extends PHPUnit_Framework_TestCase
+class Phake_Proxies_VerifierProxyTest extends TestCase
 {
     /**
      * @var Phake_CallRecorder_Verifier
@@ -80,7 +82,7 @@ class Phake_Proxies_VerifierProxyTest extends PHPUnit_Framework_TestCase
         );
 
         $this->proxy = new Phake_Proxies_VerifierProxy($this->verifier, new Phake_Matchers_Factory(), $this->mode, $this->client);
-        $obj         = $this->getMock('Phake_IMock');
+        $obj         = $this->createMock('Phake_IMock');
         Phake::when($this->verifier)->getObject()->thenReturn($obj);
         Phake::when($this->mode)->__toString()->thenReturn('exactly 1 times');
         Phake::when($this->client)->processVerifierResult($this->anything())->thenReturn($this->matchedCalls);
@@ -159,7 +161,8 @@ class Phake_Proxies_VerifierProxyTest extends PHPUnit_Framework_TestCase
      */
     public function testMagicGetWithInvalidData($invalidData, $exceptionContains)
     {
-        $this->setExpectedException('InvalidArgumentException', $exceptionContains);
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage($exceptionContains);
         $this->proxy->__get($invalidData);
     }
 
