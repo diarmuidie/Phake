@@ -43,6 +43,9 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Constraint\IsTrue;
+
 /**
  * The client adapter used for PHPUnit.
  *
@@ -53,23 +56,19 @@ class Phake_Client_PHPUnit implements Phake_Client_IClient
 {
     public function processVerifierResult(Phake_CallRecorder_VerifierResult $result)
     {
-        PHPUnit_Framework_Assert::assertThat($result, $this->getConstraint());
+        Assert::assertThat($result, $this->getConstraint());
 
         return $result->getMatchedCalls();
     }
 
     public function processObjectFreeze()
     {
-        PHPUnit_Framework_Assert::assertThat(true, PHPUnit_Framework_Assert::isTrue());
+        Assert::assertThat(true, new IsTrue());
     }
 
     private function getConstraint()
     {
-        if (version_compare('3.6.0', PHPUnit_Runner_Version::id()) == 1) {
-            return new Phake_PHPUnit_VerifierResultConstraint();
-        } else {
-            return new Phake_PHPUnit_VerifierResultConstraintV3d6();
-        }
+        return new Phake_PHPUnit_VerifierResultConstraint();
     }
 }
 

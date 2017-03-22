@@ -43,10 +43,12 @@
  * @link       http://www.digitalsandwich.com/
  */
 
+use PHPUnit\Framework\Constraint\Constraint;
+
 /**
  * A PHPUnit constraint that wraps a phake verifier to allow assertions on expected calls.
  */
-class Phake_PHPUnit_VerifierResultConstraint extends PHPUnit_Framework_Constraint
+class Phake_PHPUnit_VerifierResultConstraint extends Constraint
 {
     public function evaluate($other, $description = '', $returnResult = FALSE)
     {

@@ -59,7 +59,7 @@ class Phake_Matchers_Factory
      * Creates an argument matcher based on the given value.
      *
      * If the given values is already an instance of Phake_Matchers_IChainableArgumentMatcher it is passed
-     * through. If it is an instance of PHPUnit_Framework_Constraint a PHPUnit adapter is returned.
+     * through. If it is an instance of PHPUnit\Framework\Constraint\Constraint a PHPUnit adapter is returned.
      * If it is an instance of Hamcrest_Matcher a Hamcrest adapter is returned. For everything else
      * a EqualsMatcher is returned set to the passed in value.
      *
@@ -72,10 +72,8 @@ class Phake_Matchers_Factory
         $return = null;
         if ($argument instanceof Phake_Matchers_IChainableArgumentMatcher) {
             $return = $argument;
-        } elseif ($argument instanceof PHPUnit_Framework_Constraint) {
-            $return = new Phake_Matchers_PHPUnitConstraintAdapter($argument);
         } elseif ($argument instanceof \PHPUnit\Framework\Constraint\Constraint) {
-            $return = new Phake_Matchers_PHPUnit6ConstraintAdapter($argument);
+            $return = new Phake_Matchers_PHPUnitConstraintAdapter($argument);
         } elseif ($argument instanceof Hamcrest\Matcher) {
             $return = new Phake_Matchers_HamcrestMatcherAdapter($argument);
         } elseif ($argument instanceof Phake_Matchers_IArgumentMatcher) {
